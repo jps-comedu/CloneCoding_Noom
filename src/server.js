@@ -34,10 +34,11 @@ wss.on("connection", (socket) => {
    // console.log(socket);
    console.log("Connected to Browser"); 
    socket.on("close", () => console.log("Disconnected from Browser")); // close 이벤트 발생 -> 서버쪽 콘솔에 메시지 출력
-   socket.on("message", (message) => { // message 이벤트 -> 콜백 함수는 message를 전달받아 콘솔에 출력
-    console.log(`${message}`);
+   socket.on("message", (message) => { // message 이벤트 -> 콜백 함수는 message를 전달 받음
+   // console.log(`${message}`); // 전달 받은 message를 콘솔에 출력
+    socket.send(`${message}`); // 사용자에게 받은 메시지를 그대로 사용자에게 전송
    });
-   socket.send("hello!!"); // socket의 send 메소드로 메시지 전달, 서버 -> 사용자(프런트엔드)
+   // socket.send("hello!!"); // socket의 send 메소드로 메시지 전달, 서버 -> 사용자(프런트엔드)
 }); 
 // handleConection 함수를 선언한 다음에 on 메소드에 인자로 전달 -> 같은 역할을 하는 익명함수를 만들어 on 메소드에 포함
 // connection 이벤트가 발생했을 때 소켓을 받는 다는 것을 직관적으로 표시
