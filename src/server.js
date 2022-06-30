@@ -27,8 +27,8 @@ wss.on("connection", (socket) => {
     sockets.forEach(asocket => asocket.send(`${message}`));
     // forEach메소드: 배열의 각 요소에 차례로 접근해서 구문을 실행해주는 메소드
     // message 이벤트 발생 -> sockets의 모든 소켓에 차례로 접근해 메시지 발송
-   });   
-}); 
+   });  
+});
 // handleConection 함수를 선언한 다음에 on 메소드에 인자로 전달 
 // -> 같은 역할을 하는 익명함수를 만들어 on 메소드에 포함
 // connection 이벤트가 발생했을 때 소켓을 받는 다는 것을 직관적으로 표시
