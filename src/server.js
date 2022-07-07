@@ -24,18 +24,18 @@ wss.on("connection", (socket) => {
    console.log("Connected to Browser"); 
    socket.on("close", () => console.log("Disconnected from Browser"));
    // close 이벤트 발생 -> 서버쪽 콘솔에 메시지 출력
-   socket.on("message", (msg) => { // message 이벤트 -> 콜백 함수는 msg를 전달 받음
-      const message = JSON.parse(msg); // 문자열을 JSON으로 변환
-      switch(message.type){ //message.type의 값에 따라 어떤 코드를 사용할 것인지 결정
+   socket.on("message", (msg) => { // message 이벤트 -> 콜백 함수는 message를 전달 받음
+      const message = JSON.parse(msg) // 문자열을 JSON으로 변환
+      switch(message.type){ // message.type의 값에 따라 어떤 코드를 사용할 것인지 결정
          case "new_message": // 메시지의 내용인 payload를 전송
             sockets.forEach(asocket => asocket.send(`${socket.nickname}:${message.payload}`));
             // forEach메소드: 배열의 각 요소에 차례로 접근해서 구문을 실행해주는 메소드
             break;
-         case "nickname": 
+         case "nickname":
             socket["nickname"] = message.payload;
             // 소켓에 nickname 키 추가 -> 추가된 키에 payload 대입
-            break;         
-      }
+            break;
+      }      
    });  
 });
 // handleConection 함수를 선언한 다음에 on 메소드에 인자로 전달 
